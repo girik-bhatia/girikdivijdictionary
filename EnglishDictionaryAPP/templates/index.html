@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    English App
+{% endblock %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h1>English Dictionary</h1>
+        <form method="post">
+            {% csrf_token %}
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Search word</label>
+                    {{ meaningform.word }}
+                    <small id="emailHelp" class="form-text text-muted">We'll return the meaning of the word for you</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </form>
+        </form>
+    </div>
+    <div class="container">
+      <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    </div>
+    {% if response_list %}
+        {% for meaning in response_list %}
+            {{ meaning }}<br>
+        {% endfor %}
+    {% endif %}
+    {% if response %}
+        {{ response }}
+    {% endif %}
+{% endblock %}
